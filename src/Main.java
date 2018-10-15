@@ -20,6 +20,8 @@ public class Main {
 		System.out.println(isIsolado);
 		boolean isRegular = g.isRegular(g);
 		System.out.println(isRegular);
+		boolean isCompleto = g.isCompleto(g);
+		System.out.println(isCompleto);
 	}
 
 	private static Grafo leEntrada(Grafo g) {
