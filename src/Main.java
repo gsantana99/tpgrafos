@@ -8,26 +8,46 @@ public class Main {
 	public static void main(String[] args) {
 		Grafo g = new Grafo();
 		g = leEntrada(g);
-		int grau = g.getGrau(g.getVertice(1));
-		System.out.println(grau);
+		int grau = g.getGrau(g.getVertice(4));
+		System.out.println("Grau do vértice: " + grau);
 		boolean isAdjacente = g.isAdjacente(g.getVertice(2), g.getVertice(4));
-		System.out.println(isAdjacente);
+		System.out.println("Os vértices informados são adjacentes: " + isAdjacente);
 		boolean isNulo = g.isNulo(g);
-		System.out.println(isNulo);
-		boolean isPendente = g.isPendente(g.getVertice(5));
-		System.out.println(isPendente);
-		boolean isIsolado = g.isIsolado(g.getVertice(5));
-		System.out.println(isIsolado);
+		System.out.println("O grafo é nulo: " + isNulo);
+		boolean isPendente = g.isPendente(g.getVertice(4));
+		System.out.println("O vértice informado é pendente: " + isPendente);
+		boolean isIsolado = g.isIsolado(g.getVertice(4));
+		System.out.println("O vértice informado é isolado: " + isIsolado);
 		boolean isRegular = g.isRegular(g);
-		System.out.println(isRegular);
+		System.out.println("O grafo é regular: " + isRegular);
 		boolean isCompleto = g.isCompleto(g);
-		System.out.println(isCompleto);
+		System.out.println("O grafo é completo: " + isCompleto);
+		Grafo complementar = g.getComplementar(g);
+		System.out.println("***** Grafo Complementar *****");
+		System.out.println(complementar.toString());
+		System.out.println();
+		boolean isConexo = g.isConexo(g);
+		System.out.println("O grafo é conexo: " + isConexo);
+		
+		boolean isEuleriano = g.isEuleriano(g);
+		System.out.println("O grafo é euleriano: " + isEuleriano);
+		
+		boolean isUnicursal = g.isUnicursal(g);
+		System.out.println("O grafo é unicursal: " + isUnicursal);
+		
+		boolean hasCiclo = g.hasCiclo(g);
+		System.out.println("O grafo possui ciclo: " + hasCiclo);
+		
 	}
 
 	private static Grafo leEntrada(Grafo g) {
 		try {
 			FileReader fr = new FileReader("entrada.txt");
 			BufferedReader br = new BufferedReader(fr);
+			String digrafo = br.readLine().substring(0, 1);
+			if(digrafo.compareTo("S") == 0) {
+				g.setDigrafo(true);
+			}
 			int numVertices = Integer.parseInt(br.readLine());
 			g.addVertice(null);
 			g.addAresta(null);
