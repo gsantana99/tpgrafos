@@ -2,6 +2,9 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
+
+import com.sun.xml.internal.bind.v2.schemagen.xmlschema.List;
 
 public class Main {
 
@@ -37,6 +40,12 @@ public class Main {
 		
 		boolean hasCiclo = g.hasCiclo(g);
 		System.out.println("O grafo possui ciclo: " + hasCiclo);
+		
+		g.ordenacaoTopologica(g);
+		
+		Grafo transposto = g.getTransposto(g);
+		System.out.println("***** Grafo Transposto *****");
+		System.out.println(transposto.toString());
 		
 	}
 

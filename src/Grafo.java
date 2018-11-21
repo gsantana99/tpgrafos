@@ -1,5 +1,7 @@
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Grafo {
 	
@@ -236,13 +238,50 @@ public class Grafo {
 	}
 	
 	
-	/*
-	public void ordenacaoTopologica(Grafo g) { hasCiclo(Grafo g); }
 	
-	public Grafo getTransposto(Grafo g) { }
+	public List<Vertice> ordenacaoTopologica(Grafo g) {
+		List<Vertice> ordenacao = new ArrayList<Vertice>();
+		if(hasCiclo(g))
+			return ordenacao;
+		
+		ordenacao = buscaProfundidade(g);
+		return ordenacao;
+	}
+	private List<Vertice> buscaProfundidade(Grafo g){
+		List<Vertice> ordenacao = new ArrayList<Vertice>();
+		ordenacao = buscaProfundidade(g.getListaVertices().get(1), ordenacao, new ArrayList<Vertice>());
+		return ordenacao;
+	}
+	private List<Vertice> buscaProfundidade(Vertice verticeAtual, List<Vertice> terminados, List<Vertice> visitados){
+		visitados.add(verticeAtual);
+		List<Vertice> listaAdjacentes = this.obterVerticesAdjacentes(verticeAtual);
+		listaAdjacentes = listaAdjacentes.stream().sorted(Comparator.comparing(Vertice::getId)).collect(Collectors.toList());
+		if(visitados.containsAll(listaAdjacentes)) {
+			if(!terminados.contains(verticeAtual))
+				terminados.add(verticeAtual);
+		}
+		else {
+			for(Vertice v : listaAdjacentes) {
+				if(!visitados.contains(v))
+					terminados=buscaProfundidade(v, terminados, visitados);
+			}
+		}
+		
+		return terminados;
+	}
 	
-	public boolean isFConexo(Grafo g) { }
-	*/
+	
+	public Grafo getTransposto(Grafo g) { 
+		Grafo transposto = g;
+		for(Aresta aresta : g.getListaArestas()) {
+			if(aresta != null)
+			aresta.inverterVerticesLigados();
+		}
+		return transposto;
+	}
+	
+	//public boolean isFConexo(Grafo g) { }
+	
 	
 	@Override
 	public String toString() {

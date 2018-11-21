@@ -21,6 +21,13 @@ public class Aresta {
 	public List<Vertice> getVerticesLigados() {
 		return verticesLigados;
 	}
+	
+	public void inverterVerticesLigados() {
+		Vertice aux;
+		aux = this.verticesLigados.get(1);
+		this.verticesLigados.set(1, this.verticesLigados.get(0));
+		this.verticesLigados.set(0, aux);
+	}
 
 	@Override
 	public String toString() {
