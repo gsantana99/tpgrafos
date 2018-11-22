@@ -32,6 +32,8 @@ public class Main {
 		boolean isConexo = g.isConexo(g);
 		System.out.println("O grafo é conexo: " + isConexo);
 		
+		boolean isBipartido = g.isBipartido(g);
+		System.out.println("O grafo é bipartido: " + isBipartido);
 		boolean isEuleriano = g.isEuleriano(g);
 		System.out.println("O grafo é euleriano: " + isEuleriano);
 		
@@ -43,9 +45,13 @@ public class Main {
 		
 		g.ordenacaoTopologica(g);
 		
+		boolean isFConexo = g.isFConexo(g);
+		System.out.println("O grafo é fortemente conexo: " + isFConexo);
+		
 		Grafo transposto = g.getTransposto(g);
 		System.out.println("***** Grafo Transposto *****");
 		System.out.println(transposto.toString());
+		
 		
 	}
 

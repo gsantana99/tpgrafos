@@ -160,7 +160,12 @@ public class Grafo {
 	}
 	
 	
-	//public boolean isBipartido(Grafo g) { }
+	public boolean isBipartido(Grafo g) {
+		if(g.getListaArestas().size() == g.getListaVertices().size())
+			return true;
+		else
+			return false;
+	}
 	
 	public Grafo getComplementar(Grafo g) {
 		Grafo complementar = new Grafo();
@@ -280,7 +285,9 @@ public class Grafo {
 		return transposto;
 	}
 	
-	//public boolean isFConexo(Grafo g) { }
+	public boolean isFConexo(Grafo g) { 
+		return isConexo(g);
+	}
 	
 	
 	@Override
